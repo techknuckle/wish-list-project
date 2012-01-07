@@ -1,0 +1,20 @@
+%h2 these are the things
+%form{:action => '/add_thing', :method => 'post'}
+	%input{:type => 'text', :name => 'name', :value => 'name'}
+	%input{:type => 'text', :name => 'description', :value => 'description'}
+	%input{:type => 'text', :name => 'link', :value => 'link'}
+	%input{:type => 'submit', :value => 'Add It!'}
+
+%table
+	%tr
+		%th ID
+		%th Name
+		%th Description
+		%th Link
+	%tr
+		-@things.each do |thing|
+			%td #{thing.id}
+			%td #{thing.name}
+			%td #{thing.description}
+			%td
+				%a{:href => "#{thing.link}"}= thing.link

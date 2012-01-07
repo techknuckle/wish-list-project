@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %title Wish List Project
+    %link(rel="stylesheet" href="css/styles.css")
+  %body
+    #wrapper
+      #header
+        %h1 Wish List Project
+        %h2 wish listy
+      #nav
+        %ol
+          %a(href="/")
+            %li Home
+          %a(href="/people")
+            %li People
+          %a(href="/things")
+            %li Things
+
+      #content
+        =yield
+
+      #side_bar
+        %h1 Side Bar
+        %p
+          This is the side bar of the webpage
+
+      #footer
+        %p
+          This is the footer.
+
