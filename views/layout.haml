@@ -23,8 +23,12 @@
 
       #side_bar
         %h1 Side Bar
-        %p
-          This is the side bar of the webpage
+        %h2= "Current User: #{@current_user.name}"
+        %form{:action => '/switch_person', :method => 'post'}
+          %select{:name => 'person_id'}
+            -@all_people.each do |person|
+              %option{:value => person.id}= person.name
+          %input{:type => 'submit', :value => 'Switch Person'}
 
       #footer
         %p

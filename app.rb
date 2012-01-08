@@ -33,6 +33,18 @@ end
   
 DataMapper.finalize.auto_upgrade! 
 
+enable :sessions
+
+before do
+  @all_people = Person.all
+  @current_user = session[:current_user]
+end
+
+post '/switch_person' do
+  session[:current_user] = Person.get(params[:person_id])
+  redirect back
+end
+
 get '/' do
 	redirect '/people'
 end
