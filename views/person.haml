@@ -1,0 +1,16 @@
+%h2 this is just one person
+-#%form{:action => '/add_person', :method => 'post'}
+-#	%input{:type => 'text', :name => 'username', :value => 'username'}
+-#	%input{:type => 'text', :name => 'name', :value => 'name'}
+-#	%input{:type => 'submit', :value => 'Add Me!'}
+
+-if !@person.nil?
+	%table
+		%tr
+			%th ID
+			%th Username
+			%th Name
+		%tr
+			%td #{@person.id}
+			%td #{@person.username}
+			%td #{@person.name}

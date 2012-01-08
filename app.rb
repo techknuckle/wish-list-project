@@ -23,6 +23,13 @@ get '/' do
 	redirect '/people'
 end
 
+### PEOPLE ###
+
+get '/person/:id' do
+	@person = Person.get(params[:id])
+	haml :person
+end
+
 get '/people' do
 	@people = Person.all
 	haml :people
@@ -34,6 +41,13 @@ post '/add_person' do
 	person.name = params[:name]
 	person.save
 	redirect '/people'
+end
+
+### THINGS ###
+
+get '/thing/:id' do
+	@thing = Thing.get(params[:id])
+	haml :thing
 end
 
 get '/things' do
