@@ -10,26 +10,30 @@
       #header
         %h1 Wish List Project
       #nav
-        %ul
-          %li
-            %a{:href => "/"}= "Home"
-          %li
-            %a{:href => "/people"}= "People"
-          %li
-            %a{:href => "/things"}= "Things"
+        -if !@current_user.nil?
+          %ul
+            %li
+              %a{:href => "/"}= "Home"
+            %li
+              %a{:href => "/people"}= "People"
+            %li
+              %a{:href => "/things"}= "Things"
 
       #content
         =yield
 
       #side_bar
         %h1 Side Bar
-        %h2= @current_user.nil? ? "Current User: " : "Current User: #{@current_user.name}"
-        -if !@all_people.nil?
+        %h2= @current_user.nil? ? "Current User: " : "Current User: #{@current_user}"
+        -if (!@all_people.nil? and !@current_user.nil?)
           %form{:action => '/switch_person', :method => 'post'}
             %select{:name => 'person_id'}
               -@all_people.each do |person|
                 %option{:value => person.id}= person.name
             %input{:type => 'submit', :value => 'Switch Person'}
+        -if !@current_user.nil?
+          %form{:action => '/logout', :method => 'post'}
+            %input{:type => 'submit', :value => 'Logout'}
         -if !@current_user.nil?
           %a{:href => "/person/#{@current_user.id}"} My Wishlist
 

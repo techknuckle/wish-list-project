@@ -35,18 +35,44 @@ DataMapper.finalize.auto_upgrade!
 
 enable :sessions
 
+helpers do
+  def update_session_user(user)
+    user.nil? ? session[:current_user] = nil : session[:current_user] = user[:name]
+  end
+end
+
 before do
   @all_people = Person.all
   @current_user = session[:current_user] unless session[:current_user].nil?
 end
 
 post '/switch_person' do
-  session[:current_user] = Person.get(params[:person_id])
+  update_session_user Person.get(params[:person_id])
   redirect back
+end
+
+post '/logout' do
+  update_session_user nil
+  redirect '/login'
 end
 
 get '/' do
 	redirect '/people'
+end
+
+get '/login' do
+  haml :login
+end
+
+post '/login' do
+  @person = Person.first(:username => params[:username])
+  update_session_user @person
+
+  if @person.nil?
+    redirect back
+  else 
+    redirect '/people'
+  end
 end
 
 ### PEOPLE ###
@@ -63,12 +89,18 @@ get '/people' do
 	haml :people
 end
 
+get '/add_person' do
+  haml :add_person
+end
+
 post '/add_person' do
 	person = Person.new
 	person.username = params[:username]
 	person.name = params[:name]
 	person.save
-	redirect '/people'
+
+  update_session_user person
+	redirect '/login'
 end
 
 ### THINGS ###

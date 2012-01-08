@@ -1,0 +1,18 @@
+%h2 Please Login:
+%a{:href => '/add_person'} Register as New User
+
+#form_add
+	%form{:action => '/login', :method => 'post'}
+		%table
+			%tr
+				%td Username:		
+				%td
+					%input{:type => 'text', :name => 'username'}
+			%tr
+				%td Password:
+				%td
+					%input{:type => 'text', :name => 'password'}
+			%tr
+				%td 
+				%td
+					%input{:type => 'submit', :value => 'Login'}
