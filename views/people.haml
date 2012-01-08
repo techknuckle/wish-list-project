@@ -11,6 +11,8 @@
 		%th Name
 	%tr
 		-@people.each do |person|
-			%td #{person.id}
-			%td #{person.username}
-			%td #{person.name}
+			%tr	
+				%td #{person.id}
+				%td #{person.username}
+				%td
+					%a{:href => "person/#{person.id}"}= person.name
