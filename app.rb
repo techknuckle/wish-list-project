@@ -6,7 +6,9 @@ class Person
   include DataMapper::Resource  
   property :id, Serial
 	property :username, String, :required => true, :unique => true
-  property :name, String, :required => true  
+  property :name, String, :required => true
+
+	has n, :things, {:through => DataMapper::Resource}
 end
 
 class Thing
@@ -15,6 +17,8 @@ class Thing
 	property :name, String, :required => true, :unique => true
   property :description, String 
   property :link, String
+
+	has 1, :person, {:through => DataMapper::Resource, :required => false}
 end
   
 DataMapper.finalize.auto_upgrade! 
@@ -27,6 +31,7 @@ end
 
 get '/person/:id' do
 	@person = Person.get(params[:id])
+	@things = @person.things
 	haml :person
 end
 
@@ -51,7 +56,9 @@ get '/thing/:id' do
 end
 
 get '/things' do
+	@people = Person.all
 	@things = Thing.all
+	p @things
 	haml :things
 end
 
@@ -62,4 +69,12 @@ post '/add_thing' do
 	thing.link = params[:link]
 	thing.save
 	redirect '/things'
+end
+
+post '/add_to_wishlist' do
+	thing = Thing.get(params[:thing_id])
+	person = Person.get(params[:person_id])
+	person.things << thing
+	person.save
+	redirect back
 end

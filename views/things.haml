@@ -11,10 +11,20 @@
 		%th Name
 		%th Description
 		%th Link
+		%th Add to Wishlist
 	%tr
 		-@things.each do |thing|
-			%td #{thing.id}
-			%td #{thing.name}
-			%td #{thing.description}
-			%td
-				%a{:href => "#{thing.link}"}= thing.link
+			%tr			
+				%td #{thing.id}
+				%td
+					%a{:href => "thing/#{thing.id}"}= thing.name
+				%td #{thing.description}
+				%td
+					%a{:href => "#{thing.link}"}= thing.link
+				%td
+					%form{:action => '/add_to_wishlist', :method => 'post'}
+						%input{:type => 'hidden', :name => 'thing_id', :value => thing.id}
+						%select{:name => 'person_id'}
+							-@people.each do |person|
+								%option{:value => person.id}= person.name
+						%input{:type => 'submit', :value => 'Add To List'}

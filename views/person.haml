@@ -14,3 +14,21 @@
 			%td #{@person.id}
 			%td #{@person.username}
 			%td #{@person.name}
+
+%h2 wishlist
+-if !@things.nil?
+	%table
+		%tr
+			%th ID
+			%th Name
+			%th Description
+			%th Link
+		%tr
+			-@things.each do |thing|
+				%tr			
+					%td #{thing.id}
+					%td
+						%a{:href => "thing/#{thing.id}"}= thing.name
+					%td #{thing.description}
+					%td
+						%a{:href => "#{thing.link}"}= thing.link
