@@ -1,30 +1,45 @@
-%h2 these are the things
-%form{:action => '/add_thing', :method => 'post'}
-	%input{:type => 'text', :name => 'name', :value => 'name'}
-	%input{:type => 'text', :name => 'description', :value => 'description'}
-	%input{:type => 'text', :name => 'link', :value => 'link'}
-	%input{:type => 'submit', :value => 'Add It!'}
+#form_add
+	%h3 Add Thing:
+	%table
+		%tr
+			%form{:action => '/add_thing', :method => 'post'}
+			%td Item Name:
+			%td
+				%input{:type => 'text', :name => 'name'}
+		%tr
+			%td Description:	
+			%td
+				%textarea{:name => 'description', :rows => 5}
+		%tr
+			%td Link:
+			%td
+				%input{:type => 'text', :name => 'link'}
+		%tr
+			%td
+			%td
+				%input{:type => 'submit', :value => 'Add It!'}
 
-%table
-	%tr
-		%th ID
-		%th Name
-		%th Description
-		%th Link
-		%th Add to Wishlist
-	%tr
-		-@things.each do |thing|
-			%tr			
-				%td #{thing.id}
-				%td
-					%a{:href => "thing/#{thing.id}"}= thing.name
-				%td #{thing.description}
-				%td
-					%a{:href => "#{thing.link}"}= thing.link
-				%td
-					%form{:action => '/add_to_wishlist', :method => 'post'}
-						%input{:type => 'hidden', :name => 'thing_id', :value => thing.id}
-						%select{:name => 'person_id'}
-							-@people.each do |person|
-								%option{:value => person.id}= person.name
-						%input{:type => 'submit', :value => 'Add To List'}
+#things_table
+	%table
+		%tr
+			%th ID
+			%th Name
+			%th Description
+			%th Link
+			%th Add to Wishlist
+		%tr
+			-@things.each do |thing|
+				%tr			
+					%td #{thing.id}
+					%td
+						%a{:href => "thing/#{thing.id}"}= thing.name
+					%td #{thing.description}
+					%td
+						%a{:href => "#{thing.link}"}= thing.link
+					%td
+						%form{:action => '/add_to_wishlist', :method => 'post'}
+							%input{:type => 'hidden', :name => 'thing_id', :value => thing.id}
+							%select{:name => 'person_id'}
+								-@people.each do |person|
+									%option{:value => person.id}= person.name
+							%input{:type => 'submit', :value => 'Add To List'}

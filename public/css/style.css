@@ -1,5 +1,5 @@
 h1{
-	font-family: 'Chewy', cursive;
+	font-family: 'Alex Brush', cursive;
 	text-align:center;
 	margin:0;
 }
@@ -9,6 +9,7 @@ h2 {
 }
 
 body{
+	font-family: 'Acme', cursive;
 	background-color:#d0e4fe;
 }
 
@@ -16,16 +17,22 @@ p{
 	font-size:20px;
 }
 
+/* Page Wrapper */
+
 #wrapper {
 	width:900px;
 	margin:0 auto;
 	background:#99c;
 }
 
+/* Header */
+
 #header{
 	padding:5px 10px;
 	background:#ddd;
 }
+
+/* Nav Menu */
 
 #nav{
 	padding:5px 10px;
@@ -36,12 +43,29 @@ p{
 	margin:0;
 	padding:0;
 	list-style:none;
+	text-align: center;
 }
 #nav li {
 	display:inline;
 	margin:0;
 	padding:0;
 }
+
+#nav ul li a
+{
+	text-decoration: none;
+	padding: .2em 1em;
+	color: #fff;
+	background-color: #036;
+}
+
+#nav ul li a:hover
+{
+	color: #fff;
+	background-color: #369;
+}
+
+/* Side Bar */
 
 #side_bar{
 	float:left;
@@ -50,12 +74,22 @@ p{
 	background:#99c;
 }
 
+/* Main Content */
+
 #content{
 	float:right;
 	width:600px;
 	padding:10px;
 	background:#9c9;
 }
+
+/* Forms */
+
+#form_add{
+	padding: 0px 0 20px;
+}
+
+/* Footer */
 
 #footer {
 	clear:both;
@@ -65,4 +99,17 @@ p{
 
 #footer p {
 	margin:0;
+}
+
+/* Tables */
+
+#pretty_table th{
+	padding: 1em;
+	border-bottom: 2px;
+	border-style:solid;
+	border-color: black;
+}
+
+#pretty_table td{
+	padding: .2em 1em;
 }

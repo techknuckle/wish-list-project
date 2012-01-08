@@ -1,11 +1,12 @@
 %h2= @thing.name
 
--if !@thing.nil?
-	%table
-		%tr
-			%th Description
-			%th Link
-		%tr
-			%td #{@thing.description}
-			%td
-				%a{:href => "#{@thing.link}"}= @thing.link
+#pretty_table
+	-if !@thing.nil?
+		%table
+			%tr
+				%th Description
+				%th Link
+			%tr
+				%td #{@thing.description}
+				%td
+					%a{:href => "#{@thing.link}"}= @thing.link

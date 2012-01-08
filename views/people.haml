@@ -1,14 +1,27 @@
-%h2 these are the people
-%form{:action => '/add_person', :method => 'post'}
-	%input{:type => 'text', :name => 'username', :value => 'username'}
-	%input{:type => 'text', :name => 'name', :value => 'name'}
-	%input{:type => 'submit', :value => 'Add Me!'}
+%h3 Add Person:
 
-%table
-	%tr
-		%th Name
-	%tr
-		-@people.each do |person|
-			%tr	
-				%td
-					%a{:href => "person/#{person.id}"}= person.name
+#form_add
+	%table
+		%tr
+			%form{:action => '/add_person', :method => 'post'}
+			%td Username:
+			%td
+				%input{:type => 'text', :name => 'username'}
+		%tr
+			%td Real Name:		
+			%td
+				%input{:type => 'text', :name => 'name'}
+		%tr
+			%td 
+			%td
+				%input{:type => 'submit', :value => 'Add Me!'}
+
+#pretty_table
+	%table
+		%tr
+			%th People
+		%tr
+			-@people.each do |person|
+				%tr	
+					%td
+						%a{:href => "person/#{person.id}"}= person.name
