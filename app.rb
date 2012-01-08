@@ -18,7 +18,7 @@ class Thing
   property :description, String 
   property :link, String
 
-	has 1, :person, {:through => DataMapper::Resource, :required => false}
+	has n, :people, {:through => DataMapper::Resource, :required => false}
 end
   
 DataMapper.finalize.auto_upgrade! 
