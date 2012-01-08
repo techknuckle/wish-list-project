@@ -1,15 +1,11 @@
-%h2 this is one thing
+%h2= @thing.name
 
 -if !@thing.nil?
 	%table
 		%tr
-			%th ID
-			%th Name
 			%th Description
 			%th Link
 		%tr
-			%td #{@thing.id}
-			%td #{@thing.name}
 			%td #{@thing.description}
 			%td
 				%a{:href => "#{@thing.link}"}= @thing.link
