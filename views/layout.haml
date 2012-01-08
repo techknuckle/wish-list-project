@@ -2,20 +2,20 @@
 %html
   %head
     %title Wish List Project
-    %link(rel="stylesheet" href="css/styles.css")
+    %link(href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css')
+    %link(href="css/style.css" rel="stylesheet")
   %body
     #wrapper
       #header
         %h1 Wish List Project
-        %h2 wish listy
       #nav
-        %ol
-          %a(href="/")
-            %li Home
-          %a(href="/people")
-            %li People
-          %a(href="/things")
-            %li Things
+        %ul
+          %li
+            %a{:href => "/"}= "Home"
+          %li
+            %a{:href => "/people"}= "People"
+          %li
+            %a{:href => "/things"}= "Things"
 
       #content
         =yield
