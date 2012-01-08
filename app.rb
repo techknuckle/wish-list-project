@@ -8,7 +8,8 @@ class Person
 	property :username, String, :required => true, :unique => true
   property :name, String, :required => true
 
-	has 1, :wishlist, {:through => DataMapper::Resource}
+	has n, :wantedthings
+	has n, :things, {:through => :wantedthings}
 end
 
 class Thing
@@ -18,15 +19,16 @@ class Thing
   property :description, String 
   property :link, String
 
-	has 1, :wishlist, {:through => DataMapper::Resource, :required => false}
+	has n, :wantedthings
+	has n, :things, {:through => :wantedthings}
 end
 
-class Wishlist
+class Wantedthing
   include DataMapper::Resource  
   property :id, Serial
 
-	has n, :people, {:through => DataMapper::Resource}
-	has n, :things, {:through => DataMapper::Resource}
+	belongs_to :person
+	belongs_to :thing
 end
   
 DataMapper.finalize.auto_upgrade! 
@@ -39,7 +41,8 @@ end
 
 get '/person/:id' do
 	@person = Person.get(params[:id])
-	@things = @person.wishlist.things
+	@things = @person.things
+	p @things
 	haml :person
 end
 
@@ -52,7 +55,6 @@ post '/add_person' do
 	person = Person.new
 	person.username = params[:username]
 	person.name = params[:name]
-	person.wishlist = Wishlist.new
 	person.save
 	redirect '/people'
 end
@@ -67,7 +69,6 @@ end
 get '/things' do
 	@people = Person.all
 	@things = Thing.all
-	p @things
 	haml :things
 end
 
@@ -83,8 +84,10 @@ end
 post '/add_to_wishlist' do
 	thing = Thing.get(params[:thing_id])
 	person = Person.get(params[:person_id])
-	p person
-	person.wishlist.things << thing
-	person.wishlist.save
+	wantedthing = Wantedthing.create(:thing => thing, :person => person)
+	person.wantedthings << wantedthing
+	thing.wantedthings << wantedthing
+	person.save
+	thing.save
 	redirect back
 end
