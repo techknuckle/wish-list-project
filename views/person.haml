@@ -1,17 +1,17 @@
 %h2= "#{@person.name}'s Wishlist"
 
+
 #pretty_table
-	-if !@things.nil?
-		%table
-			%tr
-				%th Name
-				%th Description
-				%th Link
-			%tr
-				-@things.each do |thing|
-					%tr			
-						%td
-							%a{:href => "/thing/#{thing.id}"}= thing.name
-						%td #{thing.description}
-						%td
-							%a{:href => "#{thing.link}"}= thing.link
+	%table
+		%tr
+			%th Name
+			%th Description
+			%th Link
+		%tr
+			-@things.each do |thing|
+				%tr			
+					%td
+						%a{:href => "/thing/#{thing.id}"}= thing.name
+					%td #{thing.description}
+					%td
+						%a{:href => "#{thing.link}"}= thing.link
