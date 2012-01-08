@@ -1,23 +1,23 @@
 #form_add
 	%h3 Add Thing:
-	%table
-		%tr
-			%form{:action => '/add_thing', :method => 'post'}
-			%td Item Name:
-			%td
-				%input{:type => 'text', :name => 'name'}
-		%tr
-			%td Description:	
-			%td
-				%textarea{:name => 'description', :rows => 5}
-		%tr
-			%td Link:
-			%td
-				%input{:type => 'text', :name => 'link'}
-		%tr
-			%td
-			%td
-				%input{:type => 'submit', :value => 'Add It!'}
+	%form{:action => '/add_thing', :method => 'post'}
+		%table
+			%tr
+				%td Item Name:
+				%td
+					%input{:type => 'text', :name => 'name'}
+			%tr
+				%td Description:	
+				%td
+					%textarea{:name => 'description', :rows => 5}
+			%tr
+				%td Link:
+				%td
+					%input{:type => 'text', :name => 'link'}
+			%tr
+				%td
+				%td
+					%input{:type => 'submit', :value => 'Add It!'}
 
 #pretty_table
 	%table
