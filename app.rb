@@ -37,7 +37,7 @@ enable :sessions
 
 before do
   @all_people = Person.all
-  @current_user = session[:current_user]
+  @current_user = session[:current_user] unless session[:current_user].nil?
 end
 
 post '/switch_person' do
