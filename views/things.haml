@@ -19,23 +19,16 @@
 			%td
 				%input{:type => 'submit', :value => 'Add It!'}
 
-#things_table
+#pretty_table
 	%table
 		%tr
-			%th ID
 			%th Name
-			%th Description
-			%th Link
 			%th Add to Wishlist
 		%tr
 			-@things.each do |thing|
 				%tr			
-					%td #{thing.id}
 					%td
 						%a{:href => "thing/#{thing.id}"}= thing.name
-					%td #{thing.description}
-					%td
-						%a{:href => "#{thing.link}"}= thing.link
 					%td
 						%form{:action => '/add_to_wishlist', :method => 'post'}
 							%input{:type => 'hidden', :name => 'thing_id', :value => thing.id}
