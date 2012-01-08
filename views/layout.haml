@@ -23,12 +23,15 @@
 
       #side_bar
         %h1 Side Bar
-        %h2= "Current User: #{@current_user.name}"
-        %form{:action => '/switch_person', :method => 'post'}
-          %select{:name => 'person_id'}
-            -@all_people.each do |person|
-              %option{:value => person.id}= person.name
-          %input{:type => 'submit', :value => 'Switch Person'}
+        %h2= @current_user.nil? ? "Current User: " : "Current User: #{@current_user.name}"
+        -if !@all_people.nil?
+          %form{:action => '/switch_person', :method => 'post'}
+            %select{:name => 'person_id'}
+              -@all_people.each do |person|
+                %option{:value => person.id}= person.name
+            %input{:type => 'submit', :value => 'Switch Person'}
+        -if !@current_user.nil?
+          %a{:href => "/person/#{@current_user.id}"} My Wishlist
 
       #footer
         %p
