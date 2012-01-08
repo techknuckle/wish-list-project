@@ -17,7 +17,7 @@ p{
 }
 
 #wrapper {
-	width:750px;
+	width:900px;
 	margin:0 auto;
 	background:#99c;
 }
@@ -43,18 +43,18 @@ p{
 	padding:0;
 }
 
-#content{
-	float:left;
-	width:480px;
-	padding:10px;
-	background:#9c9;
-}
-
 #side_bar{
-	float:right;
-	width:230px;
+	float:left;
+	width:250px;
 	padding:10px;
 	background:#99c;
+}
+
+#content{
+	float:right;
+	width:600px;
+	padding:10px;
+	background:#9c9;
 }
 
 #footer {
